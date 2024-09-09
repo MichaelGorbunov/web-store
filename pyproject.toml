@@ -1,4 +1,4 @@
-[tool.poetry]
+django-admin startproject config .[tool.poetry]
 name = "web-store"
 version = "0.1.0"
 description = ""
