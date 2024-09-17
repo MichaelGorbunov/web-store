@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from students.models import Student
+from django.views.generic.list import ListView
+
 
 # Create your views here.
 # students/views.py
@@ -7,6 +10,10 @@ from django.http import HttpResponse
 
 def about(request):
     return render(request, 'students/about.html')
+
+
+
+
 
 # def contact(request):
 #     return render(request, 'students/contact.html')
@@ -40,6 +47,8 @@ def contacts(request):
         return HttpResponse(f"Спасибо, {name}! Ваше сообщение получено.")
     return render(request, 'students/contact2.html')
 
+
 def catalogs(request):
     return render(request, 'students/catalogs.html')
+
 
