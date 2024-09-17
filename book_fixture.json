@@ -1,0 +1,29 @@
+[
+{
+    "model": "library.book",
+    "pk": 1,
+    "fields": {
+        "title": "Война и мир",
+        "publication_date": "1870-01-01",
+        "author": 1
+    }
+},
+{
+    "model": "library.book",
+    "pk": 2,
+    "fields": {
+        "title": "Анна Каренина",
+        "publication_date": "1877-01-01",
+        "author": 1
+    }
+},
+{
+    "model": "library.book",
+    "pk": 3,
+    "fields": {
+        "title": "Преступление и наказание",
+        "publication_date": "1866-01-01",
+        "author": 2
+    }
+}
+]
