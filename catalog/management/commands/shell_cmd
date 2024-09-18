@@ -1,0 +1,24 @@
+products = Product.objects.all()
+for product in products:
+    print(product.name, product.price, product.category)
+
+python -Xutf8 manage.py dumpdata catalog.Category catalog.Product --output catalog_fixture.json --indent 4
+python manage.py loaddata catalog_fixture.json --format json
+
+
+
+from catalog.models import Product, Category
+fruct_product = Product.objects.filter(category__name='Фрукты')
+for fruct in fruct_product:
+    print(fruct.name)
+
+vegetable_product = Product.objects.filter(category__name='Овощи')
+for vegetable in vegetable_product:
+    print(vegetable.name)
+
+
+
+product = Product.objects.get(name='Картофель')
+print(product)
+product.price=10
+product.save()
