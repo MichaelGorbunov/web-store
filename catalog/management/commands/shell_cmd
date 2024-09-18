@@ -11,13 +11,19 @@ from catalog.models import Product, Category
 fruct_product = Product.objects.filter(category__name='Фрукты')
 for fruct in fruct_product:
     print(fruct.name)
+	
+
+
 
 vegetable_product = Product.objects.filter(category__name='Овощи')
 for vegetable in vegetable_product:
     print(vegetable.name)
 
 
+print(vars(product))
 
+
+from catalog.models import Product
 product = Product.objects.get(name='Картофель')
 print(product)
 product.price=10
@@ -33,3 +39,9 @@ contact = Contact.objects.filter(id=1)
 
 python -Xutf8 manage.py dumpdata catalog.Contact --output contact_fixture.json --indent 4
 python manage.py loaddata contact_fixture.json --format json
+
+
+from catalog.models import Product, Category
+fruct_product = Product.objects.filter(category__name='Фрукты')
+for fruct in fruct_product:
+    print(vars(fruct))
