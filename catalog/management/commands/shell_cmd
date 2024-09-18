@@ -27,3 +27,9 @@ from catalog.models import Contact
 contacts = Contact.objects.all()
 for contact in contacts:
     print(contact.country, contact.tax_reg_number, contact.address,contact.phone)
+	
+
+contact = Contact.objects.filter(id=1)
+
+python -Xutf8 manage.py dumpdata catalog.Contact --output contact_fixture.json --indent 4
+python manage.py loaddata contact_fixture.json --format json
