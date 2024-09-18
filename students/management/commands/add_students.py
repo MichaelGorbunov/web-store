@@ -1,4 +1,6 @@
+from django.core.management import call_command
 from django.core.management.base import BaseCommand
+
 # from students.models import Student, Group
 
 # class Command(BaseCommand):
@@ -21,11 +23,11 @@ from django.core.management.base import BaseCommand
 #                 self.stdout.write(self.style.WARNING(f'Student already exists: {student.first_name} {student.last_name}'))
 
 
-from django.core.management import call_command
+
 
 class Command(BaseCommand):
-    help = 'Load test data from fixture'
+    help = "Load test data from fixture"
 
     def handle(self, *args, **kwargs):
-        call_command('loaddata', 'students_fixture.json')
-        self.stdout.write(self.style.SUCCESS('Successfully loaded data from fixture'))
+        call_command("loaddata", "students_fixture.json")
+        self.stdout.write(self.style.SUCCESS("Successfully loaded data from fixture"))
