@@ -22,3 +22,8 @@ product = Product.objects.get(name='Картофель')
 print(product)
 product.price=10
 product.save()
+
+from catalog.models import Contact
+contacts = Contact.objects.all()
+for contact in contacts:
+    print(contact.country, contact.tax_reg_number, contact.address,contact.phone)
