@@ -47,4 +47,7 @@ def contacts(request):
 
 
 def catalogs(request):
-    return render(request, "students/catalogs.html")
+    data = {"header": "Передача параметров в шаблон Django",
+            "message":
+                "Загружен шаблон students/templates/catalog.html"}
+    return render(request, "students/catalogs.html",context=data)
