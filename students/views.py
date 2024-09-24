@@ -67,3 +67,12 @@ def catalogs(request):
             "message":
                 "Загружен шаблон students/templates/catalog.html"}
     return render(request, "students/catalogs.html",context=data)
+
+
+def index(request,student_id):
+    student = Student.objects.get(id=student_id)
+    context = {
+        'student_name': f'{student.first_name} {student.last_name}',
+        'student_year': student.get_year_display(),
+    }
+    return render(request, 'students/index.html', context)
