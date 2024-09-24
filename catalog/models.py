@@ -1,7 +1,6 @@
 from django.db import models
 
 
-
 class Category(models.Model):
     name = models.CharField(
         max_length=50,
@@ -71,6 +70,37 @@ class Product(models.Model):
         verbose_name_plural = "Продукты"
         ordering = ["name", "category"]
 
-
     def __str__(self):
         return self.name
+
+
+class Contact(models.Model):
+    country = models.CharField(
+        default="Российская Федерация",
+        max_length=50,
+        verbose_name="Страна",
+        help_text="Введите наименование страны",
+    )
+    tax_reg_number = models.CharField(
+        max_length=12,
+        verbose_name="ИНН",
+        help_text="Введите номер налогоплательщика",
+        blank=True,
+        null=True,
+    )
+    address = models.CharField(
+        max_length=250,
+        verbose_name="Адрес",
+        help_text="Введите адрес",
+    )
+    phone = models.CharField(
+        max_length=12,
+        verbose_name="Основной телефон",
+        help_text="Введите номер телефона",
+    )
+    class Meta:
+        verbose_name = "Контакты"
+        verbose_name_plural = "Контакты"
+
+    def __str__(self):
+        return self.address

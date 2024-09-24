@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from catalog.models import Contact
 from django.views.generic.list import ListView
 
 from students.models import Student
@@ -43,7 +44,22 @@ def contacts(request):
         print(phone)
         print(message)
         return HttpResponse(f"Спасибо, {name}! Ваше сообщение получено.")
-    return render(request, "students/contact2.html")
+    contact = Contact.objects.all()
+    if len(contact) !=0:
+
+        data = {"country": contact[0].country,
+                "tax_num":contact[0].tax_reg_number,
+                "address":contact[0].address,
+                "phone":contact[0].phone
+                }
+    else:
+        data = {"country": "не указано",
+                "tax_num": "не указано",
+                "address": "не указано",
+                "phone": "не указано"
+                }
+
+    return render(request, "students/contact2.html",context=data)
 
 
 def catalogs(request):

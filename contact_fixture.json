@@ -1,0 +1,12 @@
+[
+{
+    "model": "catalog.contact",
+    "pk": 1,
+    "fields": {
+        "country": "Российская Федерация",
+        "tax_reg_number": "1234567899",
+        "address": "Наш адрес не дом и не улица",
+        "phone": "322-223"
+    }
+}
+]
