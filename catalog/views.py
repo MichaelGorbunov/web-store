@@ -84,3 +84,23 @@ def detail(request, product_id):
     }
     # print(data)
     return render(request, "catalog/detail.html", context=data)
+
+from django.shortcuts import render
+
+from django.core.paginator import Paginator
+
+
+
+def articles_list(request):
+
+    products = Product.objects.all()
+
+    paginator = Paginator(products, per_page=2)
+
+    page_number = request.GET.get('page')
+
+    page_object = paginator.get_page(page_number)
+
+    context = {'page_obj': page_object}
+
+    return render(request, 'catalog/articles_func_list.html', context)
