@@ -12,6 +12,7 @@ urlpatterns = [
     # path("", views.contacts, name="catalogs"),
     # path("index/<int:student_id>/", views.index, name="index"),
     path("send/", views.send, name="send"),
-    path("product_detail/", views.product_detail, name="product_detail"),
+    path("product_detail/<int:product_id>/", views.product_detail, name="product_detail"),
     path("products_list/", views.products_list, name="products_list"),
+    path("detail/<int:product_id>/", views.detail, name="detail"),
 ]

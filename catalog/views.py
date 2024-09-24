@@ -1,17 +1,20 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from catalog.models import Contact,Product,Category
+from django.shortcuts import render, get_object_or_404
+from catalog.models import Contact, Product, Category
 
 
 # Create your views here.
 def home(request):
-
     # products = Product.objects.all()
-    #вывод в консоль списка продуктов
+    # вывод в консоль списка продуктов
     # products = Product.objects.all().order_by('-id')[:5:-1]
     # for product in products:
     #     print(product.name)
-    return render(request, "catalog/home.html")
+    # return render(request, "catalog/home.html")
+    products = Product.objects.all()
+    context = {'products': products}
+    return render(request, 'catalog/home.html', context)
+
 
 def send(request):
     return render(request, "send.html")
@@ -28,9 +31,9 @@ def contact(request):
         print(name)
         print(phone)
         print(message)
-        data={"name":name}
+        data = {"name": name}
         # return HttpResponse(f"Спасибо, {name}! Ваше сообщение получено.")
-        return render(request, 'catalog/send.html',context=data)
+        return render(request, 'catalog/send.html', context=data)
 
     # contact = Contact.objects.all()
     contact = Contact.objects.first()
@@ -47,21 +50,37 @@ def contact(request):
                 "address": contact.address,
                 "phone": contact.phone
                 }
-    return render(request, "catalog/contact.html",context=data)
+    return render(request, "catalog/contact.html", context=data)
 
-def product_detail(request):
-    product=Product.objects.get(id=1)
-    data={
+
+def product_detail(request, product_id):
+    # product=Product.objects.get(id=1)
+    product = get_object_or_404(Product, pk=product_id)
+    data = {
         "product_name": product.name,
-        "product_cat":product.category,
-        "product_price":product.price,
-        "product_descr":product.description,
-        "product_img":product.photo,
+        "product_cat": product.category,
+        "product_price": product.price,
+        "product_descr": product.description,
+        "product_img": product.photo,
     }
     # print(data)
     return render(request, "catalog/product_detail.html", context=data)
+
 
 def products_list(request):
     products = Product.objects.all()
     context = {'products': products}
     return render(request, 'catalog/products_list.html', context)
+
+def detail(request, product_id):
+    # product=Product.objects.get(id=1)
+    product = get_object_or_404(Product, pk=product_id)
+    data = {
+        "product_name": product.name,
+        "product_cat": product.category,
+        "product_price": product.price,
+        "product_descr": product.description,
+        "product_img": product.photo,
+    }
+    # print(data)
+    return render(request, "catalog/detail.html", context=data)
