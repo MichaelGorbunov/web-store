@@ -1,0 +1,18 @@
+{% extends 'catalog/base.html' %}
+ 
+{% block content %}
+
+<h1>{{title}}</h1>
+{% csrf_token %}
+<p>Содержимое страницы
+    {{ form }}
+<div>
+    <label for="username2">Имя</label><input type="text" name="name" class="form-control" id="username2" placeholder="Ваше имя" required>
+</div>
+<div>
+    <label for="my_field">Имя</label><input type="text" name="name" class="form-control" id="my_field" placeholder="Ваше имя" required>
+</div>
+
+<button type="submit" class="btn btn-lg btn-block btn-outline-primary">Отправить</button>
+
+{% endblock %}

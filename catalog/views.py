@@ -1,10 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from catalog.models import Contact, Product, Category
+from .forms import MyForm
 
 
 # Create your views here.
 def home(request):
+
     # products = Product.objects.all()
     # вывод в консоль списка продуктов
     # products = Product.objects.all().order_by('-id')[:5:-1]
@@ -68,7 +70,7 @@ def product_detail(request, product_id):
 
 
 def products_list(request):
-    products = Product.objects.all()
+    products = Product.objects.order_by("name")
     context = {'products': products}
     return render(request, 'catalog/products_list.html', context)
 
@@ -93,14 +95,27 @@ from django.core.paginator import Paginator
 
 def articles_list(request):
 
-    products = Product.objects.all()
-
+    # products = Product.objects.all()
+    products = Product.objects.order_by("-price")
     paginator = Paginator(products, per_page=2)
-
     page_number = request.GET.get('page')
-
     page_object = paginator.get_page(page_number)
-
     context = {'page_obj': page_object}
-
     return render(request, 'catalog/articles_func_list.html', context)
+
+
+def add_product(request):
+    form = MyForm()
+    if request.method == "POST":
+        # Получение данных из формы
+        username2 = request.POST.get("username2")
+        my_field  = request.POST.get("my_field ")
+
+
+        print(username2)
+        print(my_field)
+
+        data = {"name": username2}
+        # return HttpResponse(f"Спасибо, {name}! Ваше сообщение получено.")
+        return render(request, 'catalog/send.html', context=data)
+    return render(request, 'catalog/add_product.html', {'form': form})
