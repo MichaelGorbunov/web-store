@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "students",  # Ваше новое приложение
     "library",  # Ваше новое приложение
-    "catalog",  # Ваше новое приложение
+    "catalog",
+    "women",
+    # Ваше новое приложение
 ]
 
 MIDDLEWARE = [

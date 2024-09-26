@@ -33,6 +33,7 @@ urlpatterns = [
     path("library/", include("library.urls")),
     path("", include("students.urls")),
     path("favicon.ico", RedirectView.as_view(url="/static/img/favicon.ico")),
+    path('women/', include('women.urls')),
 ]
 
 if settings.DEBUG:
