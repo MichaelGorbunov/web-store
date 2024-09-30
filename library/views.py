@@ -1,5 +1,48 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Book
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView
+from django.views.generic.edit import UpdateView
+from django.views.generic.edit import DeleteView
+from django.views.generic import DetailView
+from django.urls import reverse_lazy
+
+
+class BooksListView(ListView):
+    model = Book
+    template_name = 'library/books_list.html'
+    context_object_name = 'books'
+
+
+class BookCreateView(CreateView):
+    model = Book
+    fields = ['title', 'publication_date', 'author']
+    template_name = 'library/books_form.html'
+    success_url = reverse_lazy('books_list')
+
+
+class BookUpdateView(UpdateView):
+    model = Book
+    fields = ['title', 'publication_date', 'author']
+    template_name = 'library/books_form.html'
+    success_url = reverse_lazy('books_list')
+
+class BookDetailView(DetailView):
+    model = Book
+    template_name = 'library/books_detail.html'
+    context_object_name = 'book'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['author_books_count'] = Book.objects.filter(author=self.object.author).count()
+        return context
+
+class BookDeleteView(DeleteView):
+    model = Book
+    template_name = 'library/book_confirm_delete.html'
+    success_url = reverse_lazy('books_list')
+
+
 
 
 def books_list(request):
@@ -12,3 +55,5 @@ def book_detail(request, book_id):
     book = get_object_or_404(Book, pk=book_id)
     context = {'book': book}
     return render(request, 'library/book_detail.html', context)
+
+
