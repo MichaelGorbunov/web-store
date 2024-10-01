@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "library",  # Ваше новое приложение
     "catalog",
     "women",
+    "main",
     # Ваше новое приложение
 ]
 

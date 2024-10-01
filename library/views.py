@@ -13,6 +13,13 @@ class BooksListView(ListView):
     template_name = 'library/books_list.html'
     context_object_name = 'books'
 
+    # def get_queryset(self):
+    #     queryset = super().get_queryset()
+    #     return queryset.filter(publication_date__year__gt=1900)
+    def get_queryset(self):
+        # Получаем только активные объекты
+        return Book.objects.filter(publication_date__year__gt=1800)
+
 
 class BookCreateView(CreateView):
     model = Book
