@@ -7,6 +7,7 @@ from .views import BooksListView, BookDetailView, BookCreateView, BookUpdateView
 app_name = 'library'
 
 urlpatterns = [
+
     path('books/', BooksListView.as_view(), name='books_list'),
     path('books/<int:pk>/', BookDetailView.as_view(), name='book_detail'),
     path('books/new/', BookCreateView.as_view(), name='book_create'),

@@ -18,14 +18,14 @@ class BookCreateView(CreateView):
     model = Book
     fields = ['title', 'publication_date', 'author']
     template_name = 'library/books_form.html'
-    success_url = reverse_lazy('books_list')
+    success_url = reverse_lazy('library:books_list')
 
 
 class BookUpdateView(UpdateView):
     model = Book
     fields = ['title', 'publication_date', 'author']
     template_name = 'library/books_form.html'
-    success_url = reverse_lazy('books_list')
+    success_url = reverse_lazy('library:books_list')
 
 class BookDetailView(DetailView):
     model = Book
@@ -39,21 +39,21 @@ class BookDetailView(DetailView):
 
 class BookDeleteView(DeleteView):
     model = Book
-    template_name = 'library/book_confirm_delete.html'
-    success_url = reverse_lazy('books_list')
+    template_name = 'library/books_confirm_delete.html'
+    success_url = reverse_lazy('library:books_list')
 
 
 
 
-def books_list(request):
-    books = Book.objects.all()
-    context = {'books': books}
-    return render(request, 'library/books_list.html', context)
-
-
-def book_detail(request, book_id):
-    book = get_object_or_404(Book, pk=book_id)
-    context = {'book': book}
-    return render(request, 'library/book_detail.html', context)
+# def books_list(request):
+#     books = Book.objects.all()
+#     context = {'books': books}
+#     return render(request, 'library/books_list.html', context)
+#
+#
+# def book_detail(request, book_id):
+#     book = get_object_or_404(Book, pk=book_id)
+#     context = {'book': book}
+#     return render(request, 'library/book_detail.html', context)
 
 
