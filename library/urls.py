@@ -4,6 +4,7 @@ from django.urls import path
 from library import views
 from .views import BooksListView, BookDetailView, BookCreateView, BookUpdateView, BookDeleteView
 
+app_name = 'library'
 
 urlpatterns = [
     path('books/', BooksListView.as_view(), name='books_list'),
