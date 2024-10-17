@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Book
+from .models import Book,Author
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
@@ -62,5 +62,15 @@ class BookDeleteView(DeleteView):
 #     book = get_object_or_404(Book, pk=book_id)
 #     context = {'book': book}
 #     return render(request, 'library/book_detail.html', context)
+
+def author_list(request):
+    authors = Author.objects.prefetch_related('books').all()
+    return render(request, 'library/author_list.html', {'authors': authors})
+
+def author_list_2(request):
+    authors = Author.objects.prefetch_related('books').all()
+    return render(request, 'library/author_list2.html', {'authors': authors})
+
+
 
 
