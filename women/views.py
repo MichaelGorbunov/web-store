@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect, get_object_or_404
+from django.core.paginator import Paginator
 
 from .forms import *
 from .models import *
@@ -75,3 +76,12 @@ def show_category(request, cat_id):
 
     return render(request, 'women/index.html', context=context)
 
+
+def item_list(request):
+    item_list = Women.objects.all()
+    paginator = Paginator(item_list, 5)  # Показывать 10 элементов на странице
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'women/item_list.html', {'page_obj': page_obj})

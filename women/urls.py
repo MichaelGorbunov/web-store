@@ -10,4 +10,6 @@ urlpatterns = [
     path('login/', login, name='login'),
     path('post/<slug:post_slug>/', show_post, name='post'),
     path('category/<int:cat_id>/', show_category, name='category'),
+
+    path('items/', item_list, name='item_list'),
 ]
