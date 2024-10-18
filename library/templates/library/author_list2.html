@@ -1,4 +1,4 @@
-<!-- templates/author_list.html -->
+<!-- templates/author_list2.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <title>Список авторов и книг</title>
+    <style>
+        #myTable tr:hover {
+        background-color: red; /* Цвет фона при наведении */
+        }
+    </style>
 </head>
 <body>
     <div class="container mt-5">
         <h2>Список авторов</h2>
-        <table class="table table-striped table-bordered">
+        <table id="myTable" class="table table-striped table-bordered">
             <thead>
                 <tr>
                     <th>ID</th>
